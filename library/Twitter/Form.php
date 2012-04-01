@@ -177,19 +177,22 @@ class Twitter_Form extends Zend_Form
 	 */
 	public function render(Zend_View_Interface $view = null)
 	{
-        $formTypes = array(
+        $formTypes = array( // avaible form types of Twitter Bootstrap form (i.e. classes)
           'horizontal',
           'inline',
           'vertical',
           'search'
         );
+        
+        $set = false;
+        
         foreach($formTypes as $type) {
             if($this->getAttrib($type)) {
                 $this->addDecorator("Form", array("class" => "form-$type"));
                 $set = true;
             } 
         }
-        if(true !== $set) {
+        if(true !== $set) { // if neither type was set, we set the default vertical class
             $this->addDecorator("Form", array("class" => "form-vertical"));
         }
 

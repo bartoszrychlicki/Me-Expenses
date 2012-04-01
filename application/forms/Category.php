@@ -17,6 +17,10 @@ class Application_Form_Category extends Twitter_Form
         $description->setLabel('Description');
         $this->addElement($description);
         
+        $isSystemic = new Zend_Form_Element_Checkbox('isSystemic');
+        $isSystemic->setLabel('System internal category?');
+        $this->addElement($isSystemic);
+        
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Dodaj');
         $this->addElement($submit);

@@ -23,10 +23,7 @@ class IndexController extends Zend_Controller_Action
         if($request->isPost()) {
             $post = $request->getPost();
             if($form->isValid($post)) {
-                $data = array(
-                    'name' => $post['name']
-                );
-                $model = new Application_Model_Category($data);
+                $model = new Application_Model_Category($post);
                 $categoryMapper = new Application_Model_CategoryMapper();
                 $categoryMapper->save($model);
                 $this->_helper->FlashMessenger(array('success' => 'New category added'));
@@ -35,7 +32,13 @@ class IndexController extends Zend_Controller_Action
         }
     }
     
-
-
+    public function deleteCategoryAction() {
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+        $mapper = new Application_Model_CategoryMapper();
+        $model = $mapper->find($id);
+        $mapper->delete($model);
+        
+    }
 }
 
