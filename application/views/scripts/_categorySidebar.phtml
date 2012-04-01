@@ -1,0 +1,4 @@
+<li class="nav-header"><?= $this->translate('Category'); ?></li>
+<? foreach($this->categories as $category): ?>
+    <li><a href="<?= $this->url(array('action' => 'category', 'controller' => 'index', 'id' => $category->id)); ?>"><?= $category->name; ?></a></li>
+<? endforeach; ?>

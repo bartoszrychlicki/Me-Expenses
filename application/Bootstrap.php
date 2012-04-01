@@ -2,11 +2,23 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+    protected function _initTwitterBootstrap()
+    {
+        $this->bootstrap('view');
+        $view = $this->getResource('view');
+        
+        $view->headLink()->appendStylesheet('/css/bootstrap.css');
+        $view->headLink()->appendStylesheet('/css/bootstrap-responsive.css');
+        $view->headScript()->appendFile('/js/bootstrap.min.js', $type = 'text/javascript');
+    }
+
 	protected function _initViewHelpersPaths()
 	{
         $this->bootstrap('view');
         $view = $this->getResource('view');
 		$view->addHelperPath(APPLICATION_PATH . '/views/helpers', 'Noumenal_View_Helper');
+        $view->addHelperPath(APPLICATION_PATH . '/views/helpers', 'Application_View_Helper');
+
 	}
     
     /**
