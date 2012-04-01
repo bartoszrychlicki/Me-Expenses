@@ -10,7 +10,7 @@
  *
  * @author Bard
  */
-abstract class Model {
+abstract class Me_Model_Abstract {
     
     public function __construct(array $options = null)
     {
@@ -23,7 +23,7 @@ abstract class Model {
     {
         $method = 'set' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid guestbook property');
+            throw new Exception('Invalid property added to model: '.$name);
         }
         $this->$method($value);
     }
@@ -32,7 +32,7 @@ abstract class Model {
     {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid guestbook property');
+            throw new Exception('Invalid property added to model: '.$name);
         }
         return $this->$method();
     }

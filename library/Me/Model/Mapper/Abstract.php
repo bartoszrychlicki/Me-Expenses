@@ -10,7 +10,7 @@
  *
  * @author Bard
  */
-abstract class Me_Model_Mapper {
+abstract class Me_Model_Mapper_Abstract {
     protected $_dbTable;
 
     public function setDbTable($dbTable)

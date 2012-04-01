@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_CategoryMapper extends Me_Model_Mapper
+class Application_Model_CategoryMapper extends Me_Model_Mapper_Abstract
 {
     protected $_dbTable = 'Application_Model_DbTable_Category';
     
@@ -10,7 +10,7 @@ class Application_Model_CategoryMapper extends Me_Model_Mapper
             'name'   => $category->getName(),
         );
  
-        if (null === ($id = $guestbook->getId())) {
+        if (null === ($id = $category->getId())) {
             unset($data['id']);
             $this->getDbTable()->insert($data);
         } else {
