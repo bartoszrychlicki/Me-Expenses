@@ -8,10 +8,13 @@ class IndexController extends Zend_Controller_Action
         /* Initialize action controller here */
     }
 
+    /**
+     * Adding new Expenses
+     */
     public function indexAction()
     {
-        $categoryMapper = new Application_Model_CategoryMapper();
-        $this->view->categories = $categoryMapper->fetchAll();
+        $form = new Application_Form_Expense();
+        $this->view->form = $form;
         
         $this->view->headTitle('Dashboard');
     }

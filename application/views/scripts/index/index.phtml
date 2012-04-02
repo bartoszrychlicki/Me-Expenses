@@ -1,7 +1,2 @@
 <h1><?= $this->translate(strip_tags($this->headTitle()->toString())); ?></h1>
-
-<? if($this->categories): ?>
-    <? foreach($this->categories as $category): ?>
-        <?= $category->name; ?><br />
-    <? endforeach;?>
-<? endif; ?>
+<?= $this->form; ?>

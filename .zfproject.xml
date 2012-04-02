@@ -26,7 +26,10 @@
         <modelFile modelName="CategoryMapper"/>
         <dbTableDirectory>
           <dbTableFile dbTableName="Category"/>
+          <dbTableFile dbTableName="Expense"/>
         </dbTableDirectory>
+        <modelFile modelName="Expense"/>
+        <modelFile modelName="ExpenseMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

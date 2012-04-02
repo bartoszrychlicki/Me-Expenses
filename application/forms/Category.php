@@ -2,7 +2,6 @@
 
 class Application_Form_Category extends Twitter_Form
 {
-
     public function init()
     {
         $this->setName('category');
@@ -25,7 +24,5 @@ class Application_Form_Category extends Twitter_Form
         $submit->setLabel('Dodaj');
         $this->addElement($submit);
     }
-
-
 }
 
