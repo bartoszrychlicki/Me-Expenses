@@ -35,6 +35,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->jQuery()->enable()->setVersion('1.7.2');//jQuery version, automatically 1.5 = 1.5.latest
     }
 
-
+	protected function _initFireBugLogger()
+	{
+            if(!$this->_isDebugEnabled('firebuglogger')) return false;
+            $writer = new Zend_Log_Writer_Firebug();
+            $logger = new Zend_Log($writer);
+            Zend_Registry::set('log', $logger);
+            return $logger;
+		
+	}
+	
+	protected function _isDebugEnabled($mode, $onlyDevelopment = true) {
+            $env = $this->_application->getEnvironment();
+            if(!strstr($env, 'development') and $onlyDevelopment === true) {
+                    return false;
+            }
+            $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini');
+    if($config->development->debugging->$mode->enable == false) return false;
+            return true;
+	}
 }
 

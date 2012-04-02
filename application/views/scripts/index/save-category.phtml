@@ -1,0 +1,19 @@
+<h1><?= $this->translate(strip_tags($this->headTitle()->toString())); ?></h1>
+<h2><?= $this->translate('My categories'); ?></h2>
+<? if($this->categories): ?>
+<ul>
+    <? foreach ($this->categories as $category): ?>
+        <li class="edit" id="<?=$category->id; ?>"><?=$category->name;?></li>    
+    <? endforeach; ?>
+</ul>
+<? endif; ?>
+<h2><?= $this->translate('Add new category'); ?></h2>
+<?= $this->form; ?>
+<? 
+$saveUrl = $this->url(array('action' => 'save-category', 'controller' =>'index'));
+$javaScript = "$(document).ready(function() {
+     $('.edit').editable('$saveUrl', {
+        name : 'name',
+        });
+ });"; ?>
+<?= $this->inlineScript()->appendScript($javaScript); ?>
