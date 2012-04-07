@@ -7,9 +7,9 @@ class Application_Model_CategoryMapper extends Me_Model_Mapper_Abstract
     public function save(Application_Model_Category $category)
     {
         $data = array(
-            'name'   => $category->getName(),
-            'description' => $category->getDescription(),
-            'is_systemic' => $category->getIsSystemic(),
+            'name'          => $category->getName(),
+            'description'   => $category->getDescription(),
+            'is_systemic'   => $category->getIsSystemic(),
         );
  
         if (null === ($id = $category->getId())) {

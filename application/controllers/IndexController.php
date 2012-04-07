@@ -14,9 +14,15 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $form = new Application_Form_Expense();
+        $this->view->jQuery()->uiEnable();
+        $this->view->headScript()->appendFile('/js/datepicker/jquery.ui.datepicker-pl.js');
+        
         $this->view->form = $form;
         
+        
         $this->view->headTitle('Dashboard');
+        
+        
     }
     
     public function ajaxAction()

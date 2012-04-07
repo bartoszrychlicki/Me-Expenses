@@ -38,7 +38,7 @@ class Application_Form_Expense extends Twitter_Form {
         
         $date = new Zend_Form_Element_Text('date');
         $date->setLabel('Date of the expense');
-        $date->setValue(time());
+        $date->setAttrib('class', 'datepicker');
         $this->addElement($date);
         
         $submit = new Zend_Form_Element_Submit('Save');

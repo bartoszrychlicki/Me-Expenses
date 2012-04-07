@@ -9,6 +9,9 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
         $data = array(
             'description'   => $model->getDescription(),
             'amount'        => $model->getAmount(),
+            'category_id'   => $model->getCategoryId(),
+            'date'          => $model->getDate(),
+            'created'       => time(),
         );
  
         if (null === ($id = $model->getId())) {
