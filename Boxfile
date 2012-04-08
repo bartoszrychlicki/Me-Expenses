@@ -1,0 +1,21 @@
+web1: #component type & number
+  name: me-expenses            #component settings
+  shared_writable_dirs:
+    - var/cache
+    - var/sessions
+    - data
+    - data/logs
+  document_root: public
+  php_version: 5.3.8
+  php_extensions:
+    - mysql
+    - gd
+    - eaccelerator
+     
+db1: #component type & number
+  name: me-expenses            #component settings
+  type: mysql
+   
+cache1:
+  name: sessions
+  type: memcached
