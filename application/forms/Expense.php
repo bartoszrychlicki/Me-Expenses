@@ -19,14 +19,18 @@ class Application_Form_Expense extends Twitter_Form {
         $this->setAttrib("horizontal", true);
         $this->setMethod('post');
 
-        $name = new Zend_Form_Element_Text('amount');
-        $name->setLabel('Amount');
-        $name->setRequired(true);
-        $this->addElement($name);
+        $amount = new Zend_Form_Element_Text('amount');
+        $amount->setLabel('Amount');
+        $amount->setRequired(true);
+        $amount->addFilter('StripTags');        
+        $floatValidator = new Zend_Validate_Float('pl_PL'); // we need to tell validation to accept xx.yy format
+        $amount->addValidator($floatValidator); 
+        $this->addElement($amount);
 
  
         $category = new Zend_Form_Element_Select('category_id');
         $category->setLabel('Category');
+        $category->setRequired(true);
         // fetching categories from DB
         $categoryMapper = new Application_Model_CategoryMapper;
         foreach($categoryMapper->fetchAll() as $cat) {
@@ -36,10 +40,16 @@ class Application_Form_Expense extends Twitter_Form {
         
         $description = new Zend_Form_Element_Text('description');
         $description->setLabel('Optional description');
+        $description->addFilter('StripTags');
         $this->addElement($description);
         
         $date = new Zend_Form_Element_Text('date');
         $date->setLabel('Date of the expense');
+        $date->setRequired(true);
+        $date->addValidators(array(
+            array('Date', array('format' => 'dd/mm/yyyy', 'locale' => 'pl'))
+            ));
+        
         $date->setAttrib('class', 'datepicker');
         $date->setValue(date("d/m/Y"));
         $this->addElement($date);

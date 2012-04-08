@@ -77,9 +77,13 @@ class Application_Model_Expense extends Me_Model_Abstract
     
     public function getAmountAsCurrency()
     {
+        $filter = new Zend_Filter_LocalizedToNormalized();
+        $amount = $filter->filter($this->_amount);
+        
         $currency = new Zend_Currency(
             array(
-                'value' => $this->_amount,
+                'value'     => $amount,
+                'locale'    => 'pl_PL'
             )
         );
         return $currency;        

@@ -20,7 +20,6 @@ class IndexController extends Zend_Controller_Action
         $month = $mapper->create(time()); // creating new month model for current month
         
         $log->debug($month);
-        
         $this->view->month = $month;
         
         $form = new Application_Form_Expense();
@@ -35,7 +34,8 @@ class IndexController extends Zend_Controller_Action
                 $model = new Application_Model_Expense($post);
                 $model->setCategoryId($post['category_id']);
                 $log->debug($model);
-                $mapper->save($model);
+                $expenseMapper = new Application_Model_ExpenseMapper();
+                $expenseMapper->save($model);
                 $this->_helper->FlashMessenger(array('success' => 'New expense added'));
                 $this->_helper->Redirector('index', 'index');
             }

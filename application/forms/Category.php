@@ -10,10 +10,14 @@ class Application_Form_Category extends Twitter_Form
 
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Name');
+        $name->setRequired(true);
+        $name->addFilter('StripTags');
         $this->addElement($name);
  
         $description = new Zend_Form_Element_Text('description');
         $description->setLabel('Description');
+        $description->addFilter('StripTags');
+        
         $this->addElement($description);
         
         $isSystemic = new Zend_Form_Element_Checkbox('isSystemic');

@@ -6,11 +6,18 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
 
     public function save(Application_Model_Expense $model)
     {
+        $log = Zend_Registry::get('log');
+        //we exploding the data to get timestamp for date
+        $arr = explode('/',$model->getDate());
+        
+        $log->debug($arr);
+
+        $date = mktime(0,0,1, $arr[1], $arr[0], $arr[2]);
         $data = array(
             'description'   => $model->getDescription(),
             'amount'        => $model->getAmount(),
             'category_id'   => $model->getCategoryId(),
-            'date'          => strtotime($model->getDate()),
+            'date'          => $date,
             'created'       => time(),
         );
  
