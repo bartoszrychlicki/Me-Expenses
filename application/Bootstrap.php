@@ -49,14 +49,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         Zend_Registry::set('log', $logger);
         return $logger;
     }
-
+    
+    protected function _initLogger() 
+    {
+        $this->bootstrap('log');
+        if(!$this->hasResource('log')) {
+            return false;
+        }
+        $log = $this->getResource('log');
+        Zend_Registry::set('log', $log);
+    }
+    
     protected function _isDebugEnabled($mode, $onlyDevelopment = true) {
         $env = $this->_application->getEnvironment();
         if (!strstr($env, 'development') and $onlyDevelopment === true) {
             return false;
         }
         $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini');
-        if ($config->development->debugging->$mode->enable == false)
+        if ($config->$env->debugging->$mode->enable == false)
             return false;
         return true;
     }
