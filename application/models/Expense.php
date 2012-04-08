@@ -8,6 +8,7 @@ class Application_Model_Expense extends Me_Model_Abstract
     protected $_amount;
     protected $_date;
     protected $_created;
+    protected $_category; // it a category model object
     
     public function getId() {
         return $this->_id;
@@ -61,6 +62,27 @@ class Application_Model_Expense extends Me_Model_Abstract
     public function setCreated($created) {
         $this->_created = $created;
         return $this;
+    }
+    
+    public function getCategory()
+    {
+        return $this->_category;
+    }
+    
+    public function setCategory(Application_Model_Category $category)
+    {
+        $this->_category = $category;
+        return $this;
+    }
+    
+    public function getAmountAsCurrency()
+    {
+        $currency = new Zend_Currency(
+            array(
+                'value' => $this->_amount,
+            )
+        );
+        return $currency;        
     }
 
     

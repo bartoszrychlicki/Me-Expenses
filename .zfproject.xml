@@ -30,6 +30,8 @@
         </dbTableDirectory>
         <modelFile modelName="Expense"/>
         <modelFile modelName="ExpenseMapper"/>
+        <modelFile modelName="Month"/>
+        <modelFile modelName="MonthMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

@@ -21,7 +21,9 @@ class Application_Form_Expense extends Twitter_Form {
 
         $name = new Zend_Form_Element_Text('amount');
         $name->setLabel('Amount');
+        $name->setRequired(true);
         $this->addElement($name);
+
  
         $category = new Zend_Form_Element_Select('category_id');
         $category->setLabel('Category');
@@ -39,6 +41,7 @@ class Application_Form_Expense extends Twitter_Form {
         $date = new Zend_Form_Element_Text('date');
         $date->setLabel('Date of the expense');
         $date->setAttrib('class', 'datepicker');
+        $date->setValue(date("d/m/Y"));
         $this->addElement($date);
         
         $submit = new Zend_Form_Element_Submit('Save');

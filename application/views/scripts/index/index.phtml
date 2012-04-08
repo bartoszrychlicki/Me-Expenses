@@ -1,8 +1,54 @@
-<h1><?= $this->translate(strip_tags($this->headTitle()->toString())); ?></h1>
+<div class="page-header">
+	<h1><?= $this->translate(strip_tags($this->headTitle()->toString())); ?></h1>
+</div>
+<h2><?= $this->translate("Expenses for %1\$s/%2\$s", $this->month->monthNumber, $this->month->year);?></h2>
+<? if($this->month->expenses):?>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th><?= $this->translate('Date');?></th>
+				<th><?= $this->translate('Amount');?></th>
+				<th><?= $this->translate('Category');?></th>
+				<th><?= $this->translate('Annotation');?></th>
+				<th> </th>
+			</tr>
+		</thead>
+		<tbody>
+			<? $i = 1; ?>
+			<? foreach($this->month->expenses as $exp): ?>
+				<tr>
+					<td><?= $i; ?></td>
+					<td><?= date("d/m/Y", $exp->date)?></td>
+					<td><?= $exp->getAmountAsCurrency(); ?></td>
+					<td><?= $exp->category->name ?></td>
+					<td><?= $exp->description; ?></td>
+					<td><input type="checkbox" name="expnese_id" value="<?= $exp->id; ?>"></td>
+				</tr>
+			<? $i++; ?>
+			<? endforeach; ?>
+		</tbody>
+		<thead>
+			<tr>
+				<th> </th>
+				<th><?= $this->translate('Sum');?></th>
+				<th><?= $this->month->getExpensesSumAsCurrency(); ?></th>
+				<th> </th>
+				<th> </th>
+				<th><a href="" class="btn btn-danger"><?= $this->translate('Delete'); ?></th>
+			</tr>
+		</thead>
+	</table>
+<? else: ?>
+	<?= $this->translate('No expenses in database for this month, add one!');?>
+<? endif; ?>
+
 <?= $this->form; ?>
 <? 
 $saveUrl = $this->url(array('action' => 'save-category', 'controller' =>'index'));
 $javaScript = "$(document).ready(function() {
-     $('.datepicker').datepicker($.datepicker.regional['pl']);
+	$('.datepicker').datepicker({
+		format: 'dd/mm/yyyy'
+	})
  });"; ?>
 <?= $this->inlineScript()->appendScript($javaScript); ?>

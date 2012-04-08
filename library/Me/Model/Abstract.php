@@ -23,7 +23,7 @@ abstract class Me_Model_Abstract {
     {
         $method = 'set' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid property added to model: '.$name);
+            throw new Exception('There is no setter method for property: '.$name);
         }
         $this->$method($value);
     }
@@ -32,7 +32,7 @@ abstract class Me_Model_Abstract {
     {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid property added to model: '.$name);
+            throw new Exception('There is no getter method for property: '.$name);
         }
         return $this->$method();
     }

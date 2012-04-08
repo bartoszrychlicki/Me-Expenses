@@ -13,16 +13,35 @@ class IndexController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        $form = new Application_Form_Expense();
-        $this->view->jQuery()->uiEnable();
-        $this->view->headScript()->appendFile('/js/datepicker/jquery.ui.datepicker-pl.js');
+        $log = Zend_Registry::get('log');
         
+        $mapper = new Application_Model_MonthMapper();
+        
+        $month = $mapper->create(time()); // creating new month model for current month
+        
+        $log->debug($month);
+        
+        $this->view->month = $month;
+        
+        $form = new Application_Form_Expense();
         $this->view->form = $form;
         
+        // saveing new expense in DB
+        $request = $this->getRequest();
+        if($request->isPost()) {
+            $post = $request->getPost();
+            if($form->isValid($post)) {
+                $log->debug($post);
+                $model = new Application_Model_Expense($post);
+                $model->setCategoryId($post['category_id']);
+                $log->debug($model);
+                $mapper->save($model);
+                $this->_helper->FlashMessenger(array('success' => 'New expense added'));
+                $this->_helper->Redirector('index', 'index');
+            }
+        }
         
         $this->view->headTitle('Dashboard');
-        
-        
     }
     
     public function ajaxAction()

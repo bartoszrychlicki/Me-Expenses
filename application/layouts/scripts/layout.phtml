@@ -42,7 +42,13 @@
             <ul class="nav">
               <li class="active"><a href="<?= $this->url(array('action' => 'index', 'controller' => 'index')); ?>">Home</a></li>
               <li><a href="<?= $this->url(array('action' => 'save-category', 'controller' => 'index')); ?>">Kategorie</a></li>
-              <li><a href="#contact">Contact</a></li>
+			  <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $this->translate('Expenses'); ?>
+					<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+              		<li><a href="<?= $this->url(array('action' => 'index', 'controller' => 'index')); ?>"><?= $this->translate('Add new'); ?></a></li>
+				</ul>
+			  </li>
             </ul>
             <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
           </div><!--/.nav-collapse -->

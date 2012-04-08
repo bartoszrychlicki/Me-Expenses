@@ -6,12 +6,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $this->bootstrap('view');
         $view = $this->getResource('view');
 
-        // jquery UI style
         $view->headLink()->appendStylesheet('/css/bootstrap.css');
         $view->headLink()->appendStylesheet('/css/bootstrap-responsive.css');
-        //$view->headLink()->appendStylesheet('/css/smoothness/jquery-ui-1.8.18.custom.css');
+        $view->headLink()->appendStylesheet('/css/datepicker.css');
         
         $view->headScript()->appendFile('/js/bootstrap.min.js', $type = 'text/javascript');
+        $view->headScript()->appendFile('/js/bootstrap-datepicker.js', $type = 'text/javascript');
+        
     }
 
     protected function _initLocale() 

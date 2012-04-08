@@ -35,7 +35,7 @@ class Application_Model_CategoryMapper extends Me_Model_Mapper_Abstract
         $entry = new Application_Model_Category($row->toArray());
         return $entry;
     }
- 
+    
     public function fetchAll()
     {
         $resultSet = $this->getDbTable()->fetchAll();
