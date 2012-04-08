@@ -3,6 +3,7 @@
 </div>
 <h2><?= $this->translate("Expenses for %1\$s/%2\$s", $this->month->monthNumber, $this->month->year);?></h2>
 <? if($this->month->expenses):?>
+        <form method="post" action="<?= $this->url(array('action' => 'delete-expense', 'controller' => 'index')); ?>">
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
@@ -23,7 +24,7 @@
 					<td><?= $exp->getAmountAsCurrency(); ?></td>
 					<td><?= $exp->category->name ?></td>
 					<td><?= $exp->description; ?></td>
-					<td><input type="checkbox" name="expnese_id" value="<?= $exp->id; ?>"></td>
+					<td><input type="checkbox" name="id[]" value="<?= $exp->id; ?>"></td>
 				</tr>
 			<? $i++; ?>
 			<? endforeach; ?>
@@ -35,10 +36,11 @@
 				<th><?= $this->month->getExpensesSumAsCurrency(); ?></th>
 				<th> </th>
 				<th> </th>
-				<th><a href="" class="btn btn-danger"><?= $this->translate('Delete'); ?></th>
+				<th><input type="submit" class="btn btn-danger" value="<?= $this->translate('Delete'); ?>" /></th>
 			</tr>
 		</thead>
 	</table>
+        </form>
 <? else: ?>
 	<?= $this->translate('No expenses in database for this month, add one!');?>
 <? endif; ?>

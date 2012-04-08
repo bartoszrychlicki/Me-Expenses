@@ -30,10 +30,8 @@ class IndexController extends Zend_Controller_Action
         if($request->isPost()) {
             $post = $request->getPost();
             if($form->isValid($post)) {
-                $log->debug($post);
                 $model = new Application_Model_Expense($post);
                 $model->setCategoryId($post['category_id']);
-                $log->debug($model);
                 $expenseMapper = new Application_Model_ExpenseMapper();
                 $expenseMapper->save($model);
                 $this->_helper->FlashMessenger(array('success' => 'New expense added'));
@@ -42,11 +40,6 @@ class IndexController extends Zend_Controller_Action
         }
         
         $this->view->headTitle('Dashboard');
-    }
-    
-    public function ajaxAction()
-    {
-        $request = $this->getRequest();
     }
     
     public function saveCategoryAction()
@@ -59,14 +52,12 @@ class IndexController extends Zend_Controller_Action
 
         $log = Zend_Registry::get('log');
         if ($request->isXmlHttpRequest()) {
-            $log->debug('is ajax');
             $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->disableLayout();
         }
         if ($request->isPost()) {
             $post = $request->getPost();
             if ($form->isValid($post)) {
-                $log->debug($post);
                 $model = new Application_Model_Category($post);
                 $categoryMapper->save($model);
                 if ($request->isXmlHttpRequest()) {
@@ -88,12 +79,31 @@ class IndexController extends Zend_Controller_Action
         $this->view->headScript()->appendFile('/js/jquery.jeditable.mini.js');
     }
     
-    public function deleteCategoryAction() {
+    public function deleteCategoryAction() 
+    {
         $request = $this->getRequest();
         $id = $request->getParam('id');
         $mapper = new Application_Model_CategoryMapper();
         $model = $mapper->find($id);
         $mapper->delete($model);
-        
+        $this->_helper->FlashMessenger(array('success' => 'The category has been deleted'));
+        $this->_helper->Redirector('index', 'index');
+    }
+    
+    public function deleteExpenseAction()
+    {
+        $request = $this->getRequest();
+        if($request->isPost()) {
+            $id = $request->getParam('id');
+            $mapper = new Application_Model_ExpenseMapper;
+            if(is_array($id)) {
+                foreach($id as $key => $value) {
+                    $model = $mapper->find($value);
+                    $mapper->delete($model);
+                }
+            }
+            $this->_helper->FlashMessenger(array('success' => 'The expense has been deleted'));
+        }
+        $this->_helper->Redirector('index', 'index');
     }
 }
