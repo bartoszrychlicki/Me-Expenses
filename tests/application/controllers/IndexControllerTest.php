@@ -57,6 +57,7 @@ class IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         
         // assertions
         $this->assertNotController('error');
+        $this->assertRedirect('/index/index');
     }
     
     public function testIfICanSaveNewCategory()

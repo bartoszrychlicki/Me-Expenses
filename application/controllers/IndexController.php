@@ -91,9 +91,11 @@ class IndexController extends Zend_Controller_Action
     public function deleteCategoryAction() {
         $request = $this->getRequest();
         $id = $request->getParam('id');
+        if(!$id) throw new Exception("No ID passed to delete category", 500);
         $mapper = new Application_Model_CategoryMapper();
         $model = $mapper->find($id);
         $mapper->delete($model);
-        
+        $this->_helper->FlashMessenger(array('success' => 'Category deleted'));
+        $this->_helper->Redirector('index', 'index', 'default');
     }
 }
