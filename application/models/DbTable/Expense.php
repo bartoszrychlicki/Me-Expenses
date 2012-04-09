@@ -24,7 +24,8 @@ class Application_Model_DbTable_Expense extends Zend_Db_Table_Abstract
         $month      = date("m", $timestamp);
         $year       = date("Y", $timestamp);
         
-        $select->where('date > ?', mktime(0, 0, 0, $month, 1, $year))->order('date DESC');
+        $select->where('date > ?', mktime(0, 0, 0, $month, 1, $year))
+            ->order('date DESC');
         $resultSet = $this->fetchAll($select);
         return $resultSet;
     }

@@ -10,7 +10,8 @@
  *
  * @author Bard
  */
-abstract class Me_Model_Abstract {
+abstract class Me_Model_Abstract
+{
     
     public function __construct(array $options = null)
     {
@@ -56,5 +57,3 @@ abstract class Me_Model_Abstract {
     }
  
 }
-
-?>

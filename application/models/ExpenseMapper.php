@@ -8,11 +8,11 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
     {
         $log = Zend_Registry::get('log');
         //we exploding the data to get timestamp for date
-        $arr = explode('/',$model->getDate());
+        $arr = explode('/', $model->getDate());
         
         $log->debug($arr);
 
-        $date = mktime(0,0,1, $arr[1], $arr[0], $arr[2]);
+        $date = mktime(0, 0, 1, $arr[1], $arr[0], $arr[2]);
         $data = array(
             'description'   => $model->getDescription(),
             'amount'        => $model->getAmount(),
@@ -74,7 +74,7 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
     {
         $entry = new Application_Model_Expense($row->toArray());
         $category = $row->findParentApplication_Model_DbTable_Category();
-        if($category) {
+        if ($category) {
             $categoryModel = new Application_Model_Category($category->toArray());
             $entry->setCategory($categoryModel);
         }
@@ -82,4 +82,3 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
     }
     
 }
-

@@ -1,0 +1,24 @@
+FILE: /Users/bartoszrychlicki/Sites/Me-Expenses/application/forms/Expense.php
+--------------------------------------------------------------------------------
+FOUND 0 ERROR(S) AND 2 WARNING(S) AFFECTING 2 LINE(S)
+--------------------------------------------------------------------------------
+ 26 | WARNING | Line exceeds 80 characters; contains 93 characters
+ 52 | WARNING | Line exceeds 80 characters; contains 81 characters
+--------------------------------------------------------------------------------
+
+
+FILE: ...bartoszrychlicki/Sites/Me-Expenses/application/models/ExpenseMapper.php
+--------------------------------------------------------------------------------
+FOUND 0 ERROR(S) AND 1 WARNING(S) AFFECTING 1 LINE(S)
+--------------------------------------------------------------------------------
+ 78 | WARNING | Line exceeds 80 characters; contains 82 characters
+--------------------------------------------------------------------------------
+
+
+FILE: /Users/bartoszrychlicki/Sites/Me-Expenses/library/Me/Model/Abstract.php
+--------------------------------------------------------------------------------
+FOUND 0 ERROR(S) AND 2 WARNING(S) AFFECTING 2 LINE(S)
+--------------------------------------------------------------------------------
+ 27 | WARNING | Line exceeds 80 characters; contains 82 characters
+ 36 | WARNING | Line exceeds 80 characters; contains 82 characters
+--------------------------------------------------------------------------------
