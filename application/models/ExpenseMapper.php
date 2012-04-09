@@ -60,13 +60,7 @@ class Application_Model_ExpenseMapper extends Me_Model_Mapper_Abstract
     
     public function fetchAllForMonth($timestamp)
     {
-        $select     = $this->getDbTable()->select();
-        $month      = date("m", $timestamp);
-        $year       = date("Y", $timestamp);
-        
-        $select->where('date > ?', mktime(0, 0, 0, $month, 1, $year))->order('date DESC');
-        
-        $resultSet = $this->getDbTable()->fetchAll($select);
+        $resultSet = $this->getDbTable()->fetchAllForMonth($timestamp);
         $entries   = array();
         foreach ($resultSet as $row) {
             $entry = $this->_createNewModelFromRow($row);
