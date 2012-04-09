@@ -1,6 +1,8 @@
 <div class="page-header">
 	<h1><?= $this->translate(strip_tags($this->headTitle()->toString())); ?></h1>
 </div>
+<h2><?= $this->translate("Add new expense");?></h2>
+<?= $this->form; ?>
 <h2><?= $this->translate("Expenses for %1\$s/%2\$s", $this->month->monthNumber, $this->month->year);?></h2>
 <? if($this->month->expenses):?>
         <form method="post" action="<?= $this->url(array('action' => 'delete-expense', 'controller' => 'index')); ?>">
@@ -42,10 +44,12 @@
 	</table>
         </form>
 <? else: ?>
-	<?= $this->translate('No expenses in database for this month, add one!');?>
+    <div class="alert alert-info">
+    <a class="close" data-dismiss="alert">×</a>
+    <h4 class="alert-heading">Info!</h4>
+    <?= $this->translate('No expenses in database for this month, add one!');?>
+    </div>
 <? endif; ?>
-
-<?= $this->form; ?>
 <? 
 $saveUrl = $this->url(array('action' => 'save-category', 'controller' =>'index'));
 $javaScript = "$(document).ready(function() {

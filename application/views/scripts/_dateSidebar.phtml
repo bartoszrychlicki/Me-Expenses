@@ -1,0 +1,4 @@
+<li class="nav-header"><?= $this->translate('Month'); ?></li>
+<? foreach($this->months as $month): ?>
+    <li><a href="<?= $this->url(array('action' => 'category', 'controller' => 'index', 'id' => $month->timestamp)); ?>"><?= $month->monthNumber; ?></a></li>
+<? endforeach; ?>
