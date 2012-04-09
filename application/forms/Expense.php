@@ -23,8 +23,7 @@ class Application_Form_Expense extends Twitter_Form
         $amount->setLabel('Amount');
         $amount->setRequired(true);
         $amount->addFilter('StripTags');        
-        $floatValidator = new Zend_Validate_Float('pl_PL'); // we need to tell validation to 
-        //accept xx.yy format
+        $floatValidator = new Zend_Validate_Float('pl_PL'); 
         $amount->addValidator($floatValidator); 
         $this->addElement($amount);
 

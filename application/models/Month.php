@@ -53,14 +53,17 @@ class Application_Model_Month extends Me_Model_Abstract
     
     public function setExpensesSum($sum) 
     {
-        $this->_expensesSum = (float) $sum;
+        $this->_expensesSum = $sum;
     }
     
     public function getExpensesSumAsCurrency()
     {
+        $filter = new Zend_Filter_LocalizedToNormalized();
+        $sum = $filter->filter($this->_expensesSum);
+        
         $currency = new Zend_Currency(
             array(
-                'value' => $this->_expensesSum,
+                'value' => $sum,
             )
         );
         return $currency;

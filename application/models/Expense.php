@@ -50,6 +50,8 @@ class Application_Model_Expense extends Me_Model_Abstract
 
     public function setAmount($amount) 
     {
+        $filter = new Zend_Filter_LocalizedToNormalized();
+        $amount = $filter->filter($amount);
         $this->_amount = $amount;
         return $this;
     }
@@ -89,12 +91,10 @@ class Application_Model_Expense extends Me_Model_Abstract
     
     public function getAmountAsCurrency()
     {
-        $filter = new Zend_Filter_LocalizedToNormalized();
-        $amount = $filter->filter($this->_amount);
-        
+  
         $currency = new Zend_Currency(
             array(
-                'value'     => $amount,
+                'value'     => $this->getAmount(),
                 'locale'    => 'pl_PL'
             )
         );
