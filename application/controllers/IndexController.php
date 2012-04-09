@@ -94,16 +94,22 @@ class IndexController extends Zend_Controller_Action
     public function deleteExpenseAction()
     {
         $request = $this->getRequest();
-        if($request->isPost()) {
+        if ($request->isPost()) {
             $id = $request->getParam('id');
             $mapper = new Application_Model_ExpenseMapper;
-            if(is_array($id)) {
-                foreach($id as $key => $value) {
+            if (empty($id)) {
+                $this->_helper->FlashMessenger(array('warning' => 'You have to provide
+                    expense ID to delete it'));
+            }
+            if (is_array($id)) {
+                $i = 0;
+                foreach ($id as $key => $value) {
                     $model = $mapper->find($value);
                     $mapper->delete($model);
+                    $i++;
                 }
+                $this->_helper->FlashMessenger(array('success' => ($i.' expenses has been deleted')));
             }
-            $this->_helper->FlashMessenger(array('success' => 'The expense has been deleted'));
         }
         $this->_helper->Redirector('index', 'index');
     }
