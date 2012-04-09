@@ -4,7 +4,8 @@ class Application_Model_MonthMapper
 {
     protected $_dbTable = null;
 
-    public function create($timestamp) {
+    public function create($timestamp) 
+    {
         $data = array(
             'timestamp'     => $timestamp,
             'monthNumber'   => date('m', $timestamp),
@@ -16,7 +17,7 @@ class Application_Model_MonthMapper
         $expenses = $expenseMapper->fetchAllForMonth($timestamp);
         $month->setExpenses($expenses);
         $sum = 0;
-        foreach($expenses as $expense) {
+        foreach ($expenses as $expense) {
             $sum = $sum + $expense->amount;
         }
         $month->setExpensesSum($sum);

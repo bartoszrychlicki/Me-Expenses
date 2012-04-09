@@ -14,10 +14,12 @@ class Application_Model_CategoryMapper extends Me_Model_Mapper_Abstract
  
         if (null === ($id = $category->getId())) {
             unset($data['id']);
-            $this->getDbTable()->insert($data);
+            $id = $this->getDbTable()->insert($data);
+            $category->setId($id);
         } else {
             $this->getDbTable()->update($data, array('id = ?' => $id));
         }
+        return $category;
     }
     
     public function delete(Application_Model_Category $category)

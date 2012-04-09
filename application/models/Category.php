@@ -8,11 +8,13 @@ class Application_Model_Category extends Me_Model_Abstract
     protected $_isSystemic;
     protected $_created;
     
-    public function getCreated() {
+    public function getCreated() 
+    {
         return $this->_created;
     }
 
-    public function setCreated($created) {
+    public function setCreated($created) 
+    {
         $this->_created = $created;
         return $this;
     }
@@ -60,8 +62,9 @@ class Application_Model_Category extends Me_Model_Abstract
         return $this;
     }
     
-    public function isSystemic() {
-        if($this->_isSystemic == true or $this->_isSystemic == 1) {
+    public function isSystemic() 
+    {
+        if ($this->_isSystemic == true or $this->_isSystemic == 1) {
             return true;
         } else {
             return false;
