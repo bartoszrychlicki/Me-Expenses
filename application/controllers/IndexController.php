@@ -50,7 +50,6 @@ class IndexController extends Zend_Controller_Action
 
         $request = $this->getRequest();
 
-        $log = Zend_Registry::get('log');
         if ($request->isXmlHttpRequest()) {
             $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->disableLayout();
